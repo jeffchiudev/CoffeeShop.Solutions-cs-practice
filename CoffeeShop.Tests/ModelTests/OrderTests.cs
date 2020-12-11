@@ -9,10 +9,17 @@ namespace CoffeeShop.Tests
     public class OrderTests
     {
         [TestMethod]
-        public void BeveragesConstructor_CreatesInstancesofBeverage_Beverages()
+        public void BeveragesConstructor_CreatesInstanceofBeverage_Beverages()
         {
         Beverages newBeverages = new Beverages(1, 2);
         Assert.AreEqual(typeof(Beverages), newBeverages.GetType());
+        } 
+        
+        [TestMethod]
+        public void FoodConstructor_CreatesInstanceofFood_Food()
+        {
+        Food newFood = new Food();
+        Assert.AreEqual(typeof(Food), newFood.GetType());
         }    
     }
 
