@@ -11,7 +11,7 @@ namespace CoffeeShop.Tests
         [TestMethod]
         public void BeveragesConstructor_CreatesInstancesofBeverage_Beverages()
         {
-        Beverages newBeverages = new Beverages();
+        Beverages newBeverages = new Beverages(1, 2);
         Assert.AreEqual(typeof(Beverages), newBeverages.GetType());
         }    
     }
