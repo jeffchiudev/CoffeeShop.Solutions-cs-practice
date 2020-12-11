@@ -1,20 +1,21 @@
-# _TODOName_
+# _Coffee Shop Order_
 
 <div align="center">
 <img src="https://github.com/jeffchiudev.png" width="200px" height="auto" >
+<img src="https://github.com/agatakolohe.png" width="200px" height="auto" >
 </div>
-<p align="center">Authored by Jeff Chiu</p>
-<p align="center">Updated on: TODO</p>
+<p align="center">Authored by Agata Kolodziej & Jeff Chiu</p>
+<p align="center">Updated on: 10.Dec.2020</p>
 
 #### _TODO, v1.0, 20.nov.2020_
 
 ## Description:
 
-_Detailed description of app._
+_This is an application for a coffee shop that sells beverages and pastries.  This will create a customer order and the final price of the order._
 
 ## Site link
 
-_[Click here](https://jeffchiudev.github.io/TODOexample-repo/) to visit the site._
+_[Click here](https://github.com/jeffchiudev/CoffeeShop.Solutions-cs-practice) to visit the site._
 
 
 ## Setup/Installation Requirements:
@@ -58,8 +59,10 @@ _4. Follow instructions above regarding set up and API key creation._
 
 | Description | Input | Ouput |
 | :---------- | :---- | :---- |
-| Exchange |||
-||||
+| Beverages |||
+| should correctly instantiate beverage object with beverage constructor |||
+| Food |||
+| should correctly instantiate food object with food constructor |||
 
 </p>
 </details>
@@ -75,17 +78,11 @@ _If there are any issues, I can be contacted at jeffchiudev@gmail.com_
 
 ## Technologies Used:
 
-_* C#_
-
-_* Node_
-
-_* HTML_
-
-_* CSS_
-
-_* ES6_
-
-_* Webpack_
+- C# 7.3
+- .NET Core 2.2
+- REPL
+- VS Code
+- GitHub
 
 _This extension is licensed under the MIT license._
 Copyright (c) 2020 **_Jeff W. Chiu_** 
