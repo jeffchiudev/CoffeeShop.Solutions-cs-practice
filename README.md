@@ -61,6 +61,7 @@ _4. Follow instructions above regarding set up and API key creation._
 | :---------- | :---- | :---- |
 | Beverages |||
 | should correctly instantiate beverage object with beverage constructor |||
+| should correctly calculate price based on quantity ordered | UserOrder = 5 ||
 | Food |||
 | should correctly instantiate food object with food constructor |||
 
