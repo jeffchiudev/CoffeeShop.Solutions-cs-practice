@@ -18,7 +18,7 @@ namespace CoffeeShop.Tests
         [TestMethod]
         public void FoodConstructor_CreatesInstanceofFood_Food()
         {
-        Food newFood = new Food();
+        Food newFood = new Food(1, 2);
         Assert.AreEqual(typeof(Food), newFood.GetType());
         }    
     }
