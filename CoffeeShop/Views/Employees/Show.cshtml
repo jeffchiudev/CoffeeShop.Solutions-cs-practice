@@ -1,0 +1,20 @@
+@using CoffeeShop.Models;
+
+@{
+    Layout = "_Layout";
+}
+
+
+
+<h3>Here are all the dutys for @Model["employee"].EmployeeName</h3>
+
+<ol>
+    @foreach (Duty duty in @Model["dutys"])
+    {
+        <li><a href='/employees/@Model["employee"].Id/dutys/@duty.Id'>@duty.DutyDescription</a></li>
+    }
+</ol>
+
+<p><a href='/employees/@Model["employee"].Id/dutys/new'>Add a new duty</a></p>
+<p><a href='/employees'>Return to employee list</a></p>
+<p><a href='/'>Return to Main Page</a></p>

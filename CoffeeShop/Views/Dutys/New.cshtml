@@ -1,0 +1,12 @@
+@{
+    Layout = "_Layout";
+}
+
+<h1>Add a new duty for @Model.EmployeeName</h1>
+
+<form action="/employees/@Model.Id/dutys" method="post">
+    <input id="employeeId" name="employeeId" type="hidden" value="@Model.Id">
+    <label for="dutyDescription">Description of duty</label>
+    <input id="dutyDescription" name="dutyDescription" type="text">
+    <button type='submit'>Add Duty</button>
+</form>

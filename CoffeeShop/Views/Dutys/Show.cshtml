@@ -1,0 +1,10 @@
+@{
+    Layout = "_Layout";
+}
+<h1>Employee Duty Details:</h1>
+
+<h2>@Model["duty"].DutyDescription</h2>
+<h3>Employee: @Model["employee"].EmployeeName</h3>
+
+<a href='/employees/@Model["employee"].Id/dutys/new'>Add another duty</a>
+<a href='/employees'>View all employees</a>
