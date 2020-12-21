@@ -58,5 +58,17 @@ namespace CoffeeShop.Tests
             List<Duty> result = Duty.GetAll();
             CollectionAssert.AreEqual(newDutyList, result);
         }
+
+        [TestMethod]
+        public void Find_ReturnsCorrectDutyFromDatabase_Duty()
+        {
+            Duty newDuty1 = new Duty("fire the cannons");
+            newDuty1.Save();
+            Duty newDuty2 = new Duty("trim sails");
+            newDuty2.Save();
+            Duty foundDuty = Duty.Find(newDuty1.Id);
+            Assert.AreEqual(newDuty1, foundDuty);
+        }
+
     }
 }

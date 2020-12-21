@@ -33,13 +33,6 @@ namespace CoffeeShop.Models
             }
         }
 
-        public static Duty Find(int searchId)
-        {
-            Duty placeholderDuty = new Duty("placeholder duty");
-            return placeholderDuty;
-        }
-
-
         public static List<Duty> GetAll()
         {
             List<Duty> allDutys = new List<Duty> { };
@@ -99,6 +92,34 @@ namespace CoffeeShop.Models
                 conn.Dispose();
             }
 
+        }
+        public static Duty Find(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM `dutys` WHERE id = @thisId;";
+
+            MySqlParameter thisId = new MySqlParameter();
+            thisId.ParameterName = "@thisId";
+            thisId.Value = id;
+            cmd.Parameters.Add(thisId);
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            int dutyId = 0;
+            string dutyDescription = "";
+            while (rdr.Read())
+            {
+                dutyId = rdr.GetInt32(0);
+                dutyDescription = rdr.GetString(1);
+            }
+            Duty foundDuty = new Duty(dutyDescription, dutyId);
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return foundDuty;
         }
     }
 }
