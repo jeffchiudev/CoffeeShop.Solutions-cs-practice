@@ -39,12 +39,13 @@ namespace CoffeeShop.Controllers
         }
 
         // creates new Dutys for an employee
-        [HttpPost("/employees/{employeeId}/Dutys")]
-        public ActionResult Create(int employeeId, string DutyDescription)
+        [HttpPost("/employees/{employeeId}/dutys")]
+        public ActionResult Create(int employeeId, string dutyDescription)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Employee foundEmployee = Employee.Find(employeeId);
-            Duty newDuty = new Duty(DutyDescription);
+            Duty newDuty = new Duty(dutyDescription);
+            newDuty.Save();
             foundEmployee.AddDuty(newDuty);
             List<Duty> employeeDutys = foundEmployee.Dutys;
             model.Add("dutys", employeeDutys);

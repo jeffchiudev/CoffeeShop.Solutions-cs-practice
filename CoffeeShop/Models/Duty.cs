@@ -5,7 +5,7 @@ namespace CoffeeShop.Models
     public class Duty
     {
         public string DutyDescription { get; set; }
-        public int Id { get; }
+        public int Id { get; set; }
 
         public Duty(string dutyDescription)
         {
@@ -16,6 +16,21 @@ namespace CoffeeShop.Models
         {
             DutyDescription = dutyDescription;
             Id = id;
+        }
+
+        public override bool Equals(System.Object otherDuty)
+        {
+            if (!(otherDuty is Duty))
+            {
+                return false;
+            }
+            else
+            {
+                Duty newDuty = (Duty)otherDuty;
+                bool idEquality = (this.Id == newDuty.Id);
+                bool descriptionEquality = (this.DutyDescription == newDuty.DutyDescription);
+                return (idEquality && descriptionEquality);
+            }
         }
 
         public static Duty Find(int searchId)
@@ -49,8 +64,40 @@ namespace CoffeeShop.Models
 
         }
 
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+
+            cmd.CommandText = @"INSERT INTO dutys (dutyDescription) VALUES (@DutyDescription);";
+            MySqlParameter dutyDescription = new MySqlParameter();
+            dutyDescription.ParameterName = "@DutyDescription";
+            dutyDescription.Value = this.DutyDescription;
+            cmd.Parameters.Add(dutyDescription);
+            cmd.ExecuteNonQuery();
+            Id = (int)cmd.LastInsertedId;
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+        }
+
         public static void ClearAll()
         {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM dutys;";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
 
         }
     }
