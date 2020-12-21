@@ -1,33 +1,57 @@
 using System.Collections.Generic;
-
+using MySql.Data.MySqlClient;
 namespace CoffeeShop.Models
 {
     public class Duty
     {
         public string DutyDescription { get; set; }
         public int Id { get; }
-        private static List<Duty> _instances = new List<Duty> { };
 
         public Duty(string dutyDescription)
         {
             DutyDescription = dutyDescription;
-            _instances.Add(this);
-            Id = _instances.Count;
+        }
+
+        public Duty(string dutyDescription, int id)
+        {
+            DutyDescription = dutyDescription;
+            Id = id;
         }
 
         public static Duty Find(int searchId)
         {
-            return _instances[searchId-1];
+            Duty placeholderDuty = new Duty("placeholder duty");
+            return placeholderDuty;
         }
+
 
         public static List<Duty> GetAll()
         {
-            return _instances;
+            List<Duty> allDutys = new List<Duty> { };
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM dutys;";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while (rdr.Read())
+            {
+                int dutyId = rdr.GetInt32(0);
+                string dutyDescription = rdr.GetString(1);
+                Duty newDuty = new Duty(dutyDescription, dutyId);
+                allDutys.Add(newDuty);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return allDutys;
+
         }
 
         public static void ClearAll()
         {
-            _instances.Clear();
+
         }
     }
 }
